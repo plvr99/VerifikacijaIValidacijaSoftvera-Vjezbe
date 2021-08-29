@@ -36,7 +36,7 @@ namespace FlightControlApp.Models
 
         [Key]
         [Required]
-        [StringLength(6, ErrorMessage = "Broj leta ima tačno 8 karaktera!")]
+        [StringLength(6, ErrorMessage = "Broj leta ima tačno 6 karaktera!")]
         [RegularExpression(@"([A-Z][A-Z])-([0-9][0-9][0-9])",
          ErrorMessage = "Broj leta je u formatu AA-123")]
         [DisplayName("Broj leta:")]
