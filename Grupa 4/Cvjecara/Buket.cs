@@ -41,7 +41,7 @@ namespace Cvjecara
             cvijece = new List<Cvijet>();
             dodaci = new List<string>();
             cijena = c;
-            cvijece = null;
+            
         }
 
         #endregion
