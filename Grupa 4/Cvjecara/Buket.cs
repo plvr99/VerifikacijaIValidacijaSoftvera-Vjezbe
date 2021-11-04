@@ -66,7 +66,7 @@ namespace Cvjecara
 
         public void DodajPoklon(Poklon p)
         {
-            if (Poklon == null && Poklon != null)
+            if (Poklon == null)
                 poklon = p;
         }
 
