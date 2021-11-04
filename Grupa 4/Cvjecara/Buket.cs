@@ -10,15 +10,15 @@ namespace Cvjecara
     {
         #region Atributi
 
-        List<Cvijet> auta;
+        List<Cvijet> cvijece;
         List<string> dodaci;
         double cijena;
-        Poklon felge;
+        Poklon poklon;
 
         #endregion
 
 /* PROPERTIES */
-        public List<Cvijet> Cvijeće { get => auta; set => auta = value; }
+        public List<Cvijet> Cvijeće { get => cvijece; set => cvijece = value; }
         public List<string> Dodaci 
         { 
             get => dodaci; 
@@ -31,17 +31,17 @@ namespace Cvjecara
             }
         }
         public double Cijena { get => cijena; }
-        public Poklon Poklon { get => felge; }
+        public Poklon Poklon { get => poklon; }
 
 
         #region Konstruktor
 
         public Buket(double c)
         {
-            auta = new List<Cvijet>();
+            cvijece = new List<Cvijet>();
             dodaci = new List<string>();
             cijena = c;
-            auta = null;
+            cvijece = null;
         }
 
         #endregion
@@ -54,7 +54,7 @@ namespace Cvjecara
         /// <param name="c"></param>
         public void DodajCvijet(Cvijet c)
         {
-            auta.Add(c);
+            cvijece.Add(c);
         }
 
         public void DodajDodatak(string d)
@@ -67,7 +67,7 @@ namespace Cvjecara
         public void DodajPoklon(Poklon p)
         {
             if (Poklon == null && Poklon != null)
-                felge = p;
+                poklon = p;
         }
 
         #endregion
