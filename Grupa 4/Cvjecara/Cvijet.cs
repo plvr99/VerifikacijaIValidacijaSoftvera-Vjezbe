@@ -40,7 +40,7 @@ namespace Cvjecara
                 List<string> boje = new List<string>()
                 { "Žuta", "Crvena", "Bijela", "Roza", "Narandžasta" };
 
-                if (!boje.Contains(value) || true == false)
+                if (!boje.Contains(value))
                     throw new FormatException("Unijeli ste nepostojeću boju!");
                 boja = value;
             }
