@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ehlimana\\Desktop\\Grupa 4\\Cvjecara\\Cvjecara.csproj": {}
+    "C:\\Users\\Muhamed\\Source\\Repos\\plvr99\\VerifikacijaIValidacijaSoftvera-Vjezbe\\Grupa 4\\Cvjecara\\Cvjecara.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ehlimana\\Desktop\\Grupa 4\\Cvjecara\\Cvjecara.csproj": {
+    "C:\\Users\\Muhamed\\Source\\Repos\\plvr99\\VerifikacijaIValidacijaSoftvera-Vjezbe\\Grupa 4\\Cvjecara\\Cvjecara.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ehlimana\\Desktop\\Grupa 4\\Cvjecara\\Cvjecara.csproj",
+        "projectUniqueName": "C:\\Users\\Muhamed\\Source\\Repos\\plvr99\\VerifikacijaIValidacijaSoftvera-Vjezbe\\Grupa 4\\Cvjecara\\Cvjecara.csproj",
         "projectName": "Cvjecara",
-        "projectPath": "C:\\Users\\Ehlimana\\Desktop\\Grupa 4\\Cvjecara\\Cvjecara.csproj",
-        "packagesPath": "C:\\Users\\Ehlimana\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ehlimana\\Desktop\\Grupa 4\\Cvjecara\\obj\\",
+        "projectPath": "C:\\Users\\Muhamed\\Source\\Repos\\plvr99\\VerifikacijaIValidacijaSoftvera-Vjezbe\\Grupa 4\\Cvjecara\\Cvjecara.csproj",
+        "packagesPath": "C:\\Users\\Muhamed\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Muhamed\\Source\\Repos\\plvr99\\VerifikacijaIValidacijaSoftvera-Vjezbe\\Grupa 4\\Cvjecara\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ehlimana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Muhamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
