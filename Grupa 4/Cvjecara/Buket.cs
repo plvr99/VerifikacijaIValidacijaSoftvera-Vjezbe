@@ -48,10 +48,7 @@ namespace Cvjecara
 
         #region Metode
 
-        /// <summary>
-        /// Metoda za brisanje
-        /// </summary>
-        /// <param name="c"></param>
+       
         public void DodajCvijet(Cvijet c)
         {
             cvijece.Add(c);
