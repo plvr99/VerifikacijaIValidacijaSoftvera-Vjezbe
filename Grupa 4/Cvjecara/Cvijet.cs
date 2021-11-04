@@ -26,10 +26,10 @@ namespace Cvjecara
             get => latinskoIme; 
             set
             {
-                if (string.IsNullOrEmpty(value) || !string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                     throw new FormatException("Latinsko ime ne može biti prazan string!");
                 latinskoIme = value;
-                throw new Exception("Greška");
+                
             }
         }
         public string Boja 
