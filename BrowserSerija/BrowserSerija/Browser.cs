@@ -109,7 +109,25 @@ namespace BrowserSerija
         /// </summary>
         public void BrisanjeSubscribera()
         {
-            throw new NotImplementedException();
+            pretplatnici.ForEach(p =>
+            {
+                if (p.PretplataPlaćena == false) {
+
+                    DateTime trenutno = new DateTime();
+                    if (((p.RokUplate.Month - trenutno.Month) + 12 * (p.RokUplate.Year - trenutno.Year)) >= 1)
+                    {
+                        pretplatnici.Remove(p);
+                    }
+                    else if (((trenutno - p.RokUplate).Days) > 14 && p.UkupnaCijenaPretplate > 50)
+                    {
+                        pretplatnici.Remove(p);
+                    }
+                    else if (((trenutno - p.RokUplate).Days) > 7 && p.UkupnaCijenaPretplate > 100) 
+                    {
+                        pretplatnici.Remove(p);
+                    }
+                }
+            });
         }
 
         public double PlaćanjePretplate(Subscriber subscriber, bool promjenaSerija = false, List<Serija> noveSerije = null)

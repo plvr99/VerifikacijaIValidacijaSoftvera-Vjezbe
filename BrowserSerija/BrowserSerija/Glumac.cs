@@ -88,7 +88,30 @@ namespace BrowserSerija
         /// <param name="popularnostSerije"></param>
         public void ZabilježiUčešćeUSeriji(double popularnostSerije)
         {
-            throw new NotImplementedException();
+            ukupanBrojSerija++;
+            var faktor = 0.0;
+            
+            if (popularnostSerije > 8.0)
+            {
+                faktor = 0.2;
+            }
+            else if (popularnostSerije > 0.5)
+            {
+                faktor = 0.1;
+            }
+
+            if (faktor > 10.0) faktor = 10.0;
+            if (faktor < 0.0) faktor = 0.0;
+
+            if (popularnost > 4.99)
+            {
+                popularnost += faktor * popularnost;
+            }
+            else 
+            {
+                if (popularnost < 2.0 && popularnostSerije < 2.0) popularnost -= 0.5;
+                else popularnost += 0.5;
+            }
         }
 
         #endregion
