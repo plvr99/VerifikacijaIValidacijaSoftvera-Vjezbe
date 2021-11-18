@@ -47,7 +47,7 @@ namespace BrowserSerija
         public List<Serija> SerijeNaKojeJePretplaćen { get => serijeNaKojeJePretplaćen; }
         public double UkupnaCijenaPretplate { get => ukupnaCijenaPretplate; }
         public bool PretplataPlaćena { get => pretplataPlaćena; }
-        public DateTime RokUplate { get => rokUplate; }
+        public DateTime RokUplate { get => rokUplate; set => rokUplate = value; }
 
         #endregion
 
