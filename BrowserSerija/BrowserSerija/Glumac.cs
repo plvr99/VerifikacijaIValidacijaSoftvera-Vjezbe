@@ -88,6 +88,7 @@ namespace BrowserSerija
         /// <param name="popularnostSerije"></param>
         public void ZabilježiUčešćeUSeriji(double popularnostSerije)
         {
+            //funkciju implementirao Muhamed Omerovic
             ukupanBrojSerija++;
             var faktor = 0.0;
             
@@ -95,23 +96,23 @@ namespace BrowserSerija
             {
                 faktor = 0.2;
             }
-            else if (popularnostSerije > 0.5)
+            else if (popularnostSerije > 5.0)
             {
                 faktor = 0.1;
             }
 
-            if (faktor > 10.0) faktor = 10.0;
-            if (faktor < 0.0) faktor = 0.0;
-
-            if (popularnost > 4.99)
+            if (Popularnost > 4.99)
             {
-                popularnost += faktor * popularnost;
+                popularnost += faktor * Popularnost;
             }
             else 
             {
-                if (popularnost < 2.0 && popularnostSerije < 2.0) popularnost -= 0.5;
+                if (Popularnost < 2.0 && popularnostSerije < 2.0) popularnost -= 0.5;
                 else popularnost += 0.5;
             }
+
+            if (popularnost > 10.0) popularnost = 10.0;
+            if (popularnost < 0.0) popularnost = 0.0;
         }
 
         #endregion

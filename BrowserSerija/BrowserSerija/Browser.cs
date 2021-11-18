@@ -109,6 +109,7 @@ namespace BrowserSerija
         /// </summary>
         public void BrisanjeSubscribera()
         {
+            //Funkciju implementirao Kenan Selimovic
             var pretplatniciCopy = new List<Subscriber>();
 
             pretplatnici.ForEach(p =>
@@ -124,7 +125,7 @@ namespace BrowserSerija
                     {
                         pretplatniciCopy.Add(p);
                     }
-                    else if (((trenutno - p.RokUplate).Days) > 7 && p.UkupnaCijenaPretplate > 100) 
+                    else if ((trenutno - p.RokUplate).Days > 7 && p.UkupnaCijenaPretplate > 100)
                     {
                         pretplatniciCopy.Add(p);
                     }
