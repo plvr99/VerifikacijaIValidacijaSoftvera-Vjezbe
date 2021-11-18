@@ -119,18 +119,25 @@ namespace BrowserSerija
         /// </summary>
         /// <param name="novaSezona"></param>
         /// <param name="brojEpizoda"></param>
-        public void DodajEpizode(bool novaSezona, int brojEpizoda){
+        public int DodajEpizode(bool novaSezona, int brojEpizoda){
+            //Funkciju implementirao Adnan Palavra
             if(brojEpizoda <= 0) throw new InvalidOperationException("Broj epizoda mora biti pozitivan cijeli broj");
-            if(!trenutnoAktivna) trenutnoAktivna=true;
+            if (!trenutnoAktivna) { 
+                trenutnoAktivna=true;
+                brojSezona = 1;
+                BrojEpizoda.Add(0);
+            }
             if(novaSezona) {
                 brojSezona+=1;
                 BrojEpizoda.Add(brojEpizoda);
             }
-            else BrojEpizoda[brojSezona] +=  brojEpizoda;
+            else BrojEpizoda[brojSezona-1] +=  brojEpizoda;
             int ukupno =0;
             foreach(int br in BrojEpizoda){
                 ukupno+=br;
             }
+
+            return ukupno;
         }
 
         public void ZabilježiGledanost(bool rast, int brojGledalaca)
