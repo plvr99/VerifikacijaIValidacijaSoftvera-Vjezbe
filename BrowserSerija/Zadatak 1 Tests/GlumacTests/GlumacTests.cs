@@ -1,7 +1,11 @@
 ﻿using BrowserSerija;
+using CsvHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 
 namespace Zadatak_1_Tests
 {
@@ -13,6 +17,57 @@ namespace Zadatak_1_Tests
         public Browser browser;
         public Serija s;
 
+        #region CSVInitialize Zadatak3
+        //Implementirao Omerovic Muhamed
+        static IEnumerable<object[]> GlumacFailedCSV
+        {
+            get
+            {
+                return UčitajPodatkeCSVGlumacFailed();
+            }
+        }
+
+        static IEnumerable<object[]> GlumacValidCSV
+        {
+            get
+            {
+                return UčitajPodatkeCSVGlumacValid();
+            }
+        }
+
+        public static IEnumerable<object[]> UčitajPodatkeCSVGlumacValid()
+        {
+            using (var reader = new StreamReader("GlumacValidCSV.csv"))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var rows = csv.GetRecords<dynamic>();
+                foreach (var row in rows)
+                {
+                    var values = ((IDictionary<String, Object>)row).Values;
+                    var elements = values.Select(elem => elem.ToString()).ToList();
+                    yield return new object[] { elements[0], elements[1], DateTime.ParseExact(elements[2], "dd/MM/yyyy", null)};
+                }
+            }
+        }
+
+        public static IEnumerable<object[]> UčitajPodatkeCSVGlumacFailed()
+        {
+            using (var reader = new StreamReader("GlumacFailedCSV.csv"))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var rows = csv.GetRecords<dynamic>();
+                foreach (var row in rows)
+                {
+                    var values = ((IDictionary<String, Object>)row).Values;
+                    var elements = values.Select(elem => elem.ToString()).ToList();
+                    yield return new object[] { elements[0], elements[1], DateTime.ParseExact(elements[2], "dd/MM/yyyy", null) };
+                }
+            }
+        }
+
+        #endregion
+
+        #region Zadatak1
 
         //Set up napisao Adnan Palavra
         [TestInitialize]
@@ -82,6 +137,34 @@ namespace Zadatak_1_Tests
             g1.ZabilježiUčešćeUSeriji(6);
             Assert.AreEqual(g1.Popularnost, 10);
         }
+
+        #endregion
+
+        #region Zadatak3
+        //Test implementirao Muhamed Omerovic
+        [TestMethod]
+        [DynamicData("GlumacFailedCSV")]
+        [ExpectedException(typeof(FormatException))]
+        public void TestKonstruktoraGlumcaLosCSV(string ime, string nacionalnost, DateTime rođenje)
+        {
+            //Test implementirao Adnan Palavra
+            Glumac g = new Glumac(ime, nacionalnost, rođenje);
+        }
+
+
+        //Test implementirao Adnan Palavra
+        [TestMethod]
+        [DynamicData("GlumacValidCSV")]
+        public void TestKonstruktoraGlumcaDobarCSV(string ime, string nacionalnost, DateTime rođenje)
+        {
+            //Test implementirao Muhamed Omerovic
+            Glumac g = new Glumac(ime, nacionalnost, rođenje);
+            StringAssert.Equals(g.Ime, ime);
+            Assert.AreEqual(g.Nacionalnost, nacionalnost);
+            Assert.IsTrue(g.DatumRođenja.Equals(rođenje));
+        }
+
+        #endregion
 
     }
 }

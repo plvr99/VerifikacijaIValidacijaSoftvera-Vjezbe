@@ -13,13 +13,13 @@ namespace Zadatak_2
         [TestMethod]
         public void TestZamjenskiObjekat()
         {
-            Glumac g1 = new Glumac("Will Smith", "SAD", DateTime.Parse("25/09/1968"));
+            Glumac g1 = new Glumac("Will Smith", "SAD", DateTime.ParseExact("25/09/1968", "dd/MM/yyyy", null));
             Glumac g2 = new Glumac("Neki lažni glumac", "Neka lažna zemlja", DateTime.Now.AddDays(-1));
             Serija s = new Serija("The Fresh Prince of Bel Air", "Serija iz SAD za sve generacije!", Žanr.Američka, new List<Glumac>() { g1, g2 });
             Browser browser = new Browser();
             browser.RadSaSerijama(s, 1);
-            
-            BazaFilmova baza = new BazaFilmova();
+
+            IBazaFilmova baza = new StubBazaFilmova();
             browser.PrekontrolišiSerije(baza);
 
             Assert.AreEqual(browser.Serije[0].Glumci.Count, 1);
@@ -45,9 +45,9 @@ namespace Zadatak_2
             Assert.AreEqual(browser.Rasporedi.Count, 0);
             Assert.IsTrue(Math.Abs(browser.Serije[0].PopularnostSerije - 10) < 0.1);
             Assert.IsTrue(Math.Abs(browser.Serije[1].PopularnostSerije - 1) < 0.1);
-            
+
             browser.AutomatskoDodavanjeRasporeda();
-            
+
             Assert.AreEqual(browser.Rasporedi.Count, 1);
             Assert.IsTrue(browser.Rasporedi[0].Serije.Contains(s1));
             Assert.IsTrue(browser.Rasporedi[0].Serije.Contains(s2));
@@ -103,5 +103,16 @@ namespace Zadatak_2
         }
 
         #endregion
+
+        #region Zadatak3
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void Zadatak3_RasporedKonstruktorTest()
+        {
+            //Implementirao Muhamed Omerovic
+            new Raspored(DateTime.Now, DateTime.Now.AddDays(-2), new List<Serija> { }, new List<DateTime> { });
+        }
+        #endregion
+
     }
 }

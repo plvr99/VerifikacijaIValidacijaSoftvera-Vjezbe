@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Serije>
+  <Serija>
+    <Ime>A</Ime>
+    <Opis>OPISOPISOPISOPISOPISOPI SAD</Opis>
+    <Zanr>0</Zanr>
+	<Glumci></Glumci>
+  </Serija>
+  <Serija>
+    <Ime>Muhamed</Ime>
+    <Opis>AAAA SAD</Opis>
+    <Zanr>0</Zanr>
+	<Glumci></Glumci>
+  </Serija>
+  <Serija>
+    <Ime>Muhamed</Ime>
+    <Opis>OPISOPISOPISOPISOPISOPI SAD</Opis>
+    <Zanr>4</Zanr>
+    <Glumci></Glumci>
+  </Serija>
+  <Serija>
+    <Ime>Muhamed</Ime>
+    <Opis>OPISOPISOPISOPISOPISOPI SAD</Opis>
+    <Zanr>0</Zanr>
+	<Glumci></Glumci>
+  </Serija>
+</Serije>

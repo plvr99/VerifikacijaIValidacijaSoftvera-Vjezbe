@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Serije>
+	<Serija>
+		<Ime>Ovo je neka serija sa dobrim imenom</Ime>
+		<Opis>OPISOPISOPISOPISOPISOPI SAD</Opis>
+		<Zanr>0</Zanr>
+		<Glumci>
+			<null></null>
+		</Glumci>
+	</Serija>
+</Serije>

@@ -189,7 +189,60 @@ namespace BrowserSerija
 
         public void AutomatskoDodavanjeRasporeda(bool samoPopularneSerije = false)
         {
-            throw new NotImplementedException();
+            List<Serija> serije = null;
+            if (Serije.Count < 1) throw new ArgumentNullException("Nema Serija za dodati");
+            if (samoPopularneSerije)
+            {
+                serije = new();
+                foreach (var s in Serije) 
+                {
+                    if (s.PopularnostSerije >= 5) serije.Add(s);
+                }
+                if (serije.Count < 1) throw new InvalidOperationException("Nemoguce dodavanje serija");
+            }
+            else
+            {
+                serije = Serije;
+            }
+
+
+            DateTime datumPocetka = new();
+            DateTime datumKraja = new();
+            List<DateTime> prikazivanja = new();
+
+            if (Rasporedi.Count < 1)
+            {
+                //Napravi prvi raspored od danasnjeg datuma
+                datumPocetka = DateTime.Now;
+                datumKraja = datumPocetka.AddDays(7);
+            }
+            else 
+            {
+                //Postoji raspored, uzmi zadnji i dodaj jedan dan
+                datumPocetka = Rasporedi.Last().Kraj.AddDays(1);
+                datumKraja = datumPocetka.AddDays(7);
+            }
+
+            //Kreiranje rasporeda
+            int brSerijaPoDanu = (int)Math.Ceiling((0.0 + serije.Count) / 7);
+
+            int brojacSerije = 0;
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < brSerijaPoDanu; j++)
+                {
+                    if (brojacSerije == serije.Count - 1) break;
+                    else
+                    {
+                        DateTime vrijeme = datumPocetka.AddDays(i).AddMinutes(j*30);
+                        prikazivanja.Add(vrijeme);
+                    }
+                    brojacSerije++;
+                }
+            }
+
+            Raspored raspored = new Raspored(datumPocetka,datumKraja,serije,prikazivanja);
+            NapraviRaspored(raspored);
         }
 
         #endregion

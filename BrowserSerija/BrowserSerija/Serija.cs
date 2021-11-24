@@ -122,7 +122,7 @@ namespace BrowserSerija
         public int DodajEpizode(bool novaSezona, int brojEpizoda){
             //Funkciju implementirao Adnan Palavra
             if(brojEpizoda <= 0) throw new InvalidOperationException("Broj epizoda mora biti pozitivan cijeli broj");
-            if (!trenutnoAktivna) { 
+            if (!TrenutnoAktivna) { 
                 trenutnoAktivna=true;
                 brojSezona = 1;
                 BrojEpizoda.Add(0);
@@ -152,7 +152,7 @@ namespace BrowserSerija
 
         public void AžurirajPopularnost()
         {
-            popularnostSerije = (double)trenutniBrojGledalaca / (Browser.MaksimalniZabilježeniBrojGledalaca) * 10.0;
+            popularnostSerije = (double)TrenutniBrojGledalaca / (Browser.MaksimalniZabilježeniBrojGledalaca) * 10.0;
         }
 
         #endregion
