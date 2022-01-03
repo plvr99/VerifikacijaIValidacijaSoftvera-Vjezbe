@@ -15,6 +15,7 @@ namespace BrowserSerija
         List<Subscriber> pretplatnici;
         static int maksimalniZabilježeniBrojGledalaca;
 
+
         #endregion
 
         #region Properties
