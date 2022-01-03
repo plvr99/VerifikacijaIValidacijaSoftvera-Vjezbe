@@ -8,6 +8,7 @@ namespace BrowserSerija
 {
     public class Browser
     {
+
         #region Atributi
 
         List<Serija> serije;
