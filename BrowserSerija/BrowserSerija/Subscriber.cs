@@ -70,24 +70,22 @@ namespace BrowserSerija
         {
             if (serije == null)
                 throw new FormatException("Lista serija se mora specificirati!");
-            double pretplata = 0.0;
             foreach (var serija in serije)
             {
                 if (serija.PopularnostSerije < 2)
-                    pretplata += 1.5;
+                    ukupnaCijenaPretplate += 1.5;
                 else if (serija.PopularnostSerije < 5)
-                    pretplata += 4.0;
+                    ukupnaCijenaPretplate += 4.0;
                 else if (serija.PopularnostSerije < 7.5)
-                    pretplata += 5.5;
+                    ukupnaCijenaPretplate += 5.5;
                 else if (serija.PopularnostSerije < 9.0)
-                    pretplata += 7.5;
+                    ukupnaCijenaPretplate += 7.5;
                 else
-                    pretplata += 10.0;
+                    ukupnaCijenaPretplate += 10.0;
             }
-            ukupnaCijenaPretplate = pretplata;
             pretplataPlaćena = false;
             rokUplate = DateTime.Now.AddMonths(1);
-            return pretplata;
+            return ukupnaCijenaPretplate;
         }
 
         public void PlatiPretplatu(string password)
