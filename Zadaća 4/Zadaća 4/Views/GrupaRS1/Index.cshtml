@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Zadaća_4.Models.GodisnjiOdmor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Odmor.ba - Interaktivna platforma za godišnje odmore</h1>
+<img src="https://lh3.googleusercontent.com/proxy/gEVOxEk6OJYhbs6XEx79xhM6BH_cftFkuRjbNoxHFyDoJNMt8d4Oer6VpmTB494q-X-gdc4KtxOQREEjRR9RdVrstJ6P0amDy5VMK6iKCNlFof9yMv27iMql4APxzvjtOYI5IzNbiZKJ6ey3" style="width: 100%" />
+<h3 style="margin-top: 3%">Šef vam ne da na godišnji odmor? Prijavite se ovdje i mi ćemo vam dati odobrenje!</h3>
+<h2 style="margin-top: 3%">Registrovani godišnji odmori:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojProtokola)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Zaposlenik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pocetak)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kraj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojRadnihDana)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odobrio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Napomena)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojProtokola)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zaposlenik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pocetak)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kraj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojRadnihDana)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odobrio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Napomena)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novi godišnji odmor</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=dVaCngaXaek" style="margin-top: 5%">Muzika protiv stresa</a>
+</div>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

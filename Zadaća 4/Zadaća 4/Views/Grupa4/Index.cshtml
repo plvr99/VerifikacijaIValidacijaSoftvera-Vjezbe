@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Zadaća_4.Models.SvemirskiBrod>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Vanzemaljci.ba - Platforma za svemirske brodove</h1>
+<img src="https://assets.foxdcg.com/dpp-uploaded/images/cosmos-a-spacetime-odyssey/10sec-clip-Cosmos_2398_LandLoop.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Budite najpopularniji u cijelom kvadrantu! Pokažite svima da imate najbolji svemirski brod!</h3>
+<h2 style="margin-top: 3%">Registrovani svemirski brodovi:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SerijskiBroj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kvadrant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Planeta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Starost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vanzemaljci)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SvjetlosnaBrzina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slika)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerijskiBroj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kvadrant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Planeta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Starost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vanzemaljci)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SvjetlosnaBrzina)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slika)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novi svemirski brod</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=dzS52hLVUCU" style="margin-top: 5%">Najbolja svemirska muzika</a>
+</div>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

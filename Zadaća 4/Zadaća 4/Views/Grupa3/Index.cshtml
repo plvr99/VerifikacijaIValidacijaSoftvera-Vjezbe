@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Zadaća_4.Models.KvizOdgovor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Kviz.ba - Interaktivna platforma za odgovaranje na pitanja kviza</h1>
+<img src="https://www.disruptiveadvertising.com/wp-content/uploads/2019/03/QUIZ-1280x720.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Današnje pitanje: Koja je trenutno nastavna sedmica na Elektrotehničkom fakultetu u Sarajevu?</h3>
+<h2 style="margin-top: 3%">Registrovani odgovori:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Godište)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DodatniOdgovor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Novosti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojTelefona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recenzija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odgovor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Godište)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DodatniOdgovor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Novosti)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrojTelefona)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Recenzija)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Odgovor)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novi odgovor</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=JuYeHPFR3f0" style="margin-top: 5%">Muzika za motivaciju</a>
+</div>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

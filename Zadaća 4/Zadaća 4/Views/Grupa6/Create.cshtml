@@ -1,0 +1,91 @@
+﻿@model Zadaća_4.Models.Umjetnina
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function odrediKategoriju(autor) {
+        var kategorija = 0;
+
+        if (autor.value.includes("van"))
+            kategorija++;
+        if (autor.value.includes("Leonardo"))
+            kategorija++;
+        if (autor.value.includes("John"))
+            kategorija++;
+
+        if (kategorija == 3)
+            return "Kategorija 3: vrijednost preko 1,000,000 $";
+        else if (kategorija == 2)
+            return "Kategorija 2: vrijednost do 100,000 $";
+        else if (kategorija == 1)
+            return "Kategorija 1: vrijednost do 10,000 $";
+        else
+            return "Kategorija 0: vrijednost ispod 10,000 $";
+    }
+</script>
+<h1 style="text-align: center">Dodavanje nove umjetnine</h1>
+<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/1787ad22268407.5630f78ec0c10.jpg" style="width: 100%" />
+<h4 style="margin-top: 3%">Tražene informacije:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="KodGalerije" class="control-label"></label>
+                <input asp-for="KodGalerije" class="form-control" />
+                <span asp-validation-for="KodGalerije" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Naziv" class="control-label"></label>
+                <input asp-for="Naziv" class="form-control" />
+                <span asp-validation-for="Naziv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor" class="control-label"></label>
+                <input asp-for="Autor" class="form-control" id="autor" />
+                <span asp-validation-for="Autor" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" onclick="return confirm(odrediKategoriju(document.getElementById('autor')));" class="btn btn-primary">Odredi Kategoriju</button>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tip" class="control-label"></label>
+                <select asp-for="Tip" class="form-control" asp-items="Html.GetEnumSelectList<TipUmjetnine>()"></select>
+                <span asp-validation-for="Tip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumRegistracije" class="control-label"></label>
+                <input asp-for="DatumRegistracije" class="form-control" />
+                <span asp-validation-for="DatumRegistracije" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cijena" class="control-label"></label>
+                <input asp-for="Cijena" class="form-control" />
+                <span asp-validation-for="Cijena" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Naslijede" /> @Html.DisplayNameFor(model => model.Naslijede)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Poklon" /> @Html.DisplayNameFor(model => model.Poklon)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj novu umjetninu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

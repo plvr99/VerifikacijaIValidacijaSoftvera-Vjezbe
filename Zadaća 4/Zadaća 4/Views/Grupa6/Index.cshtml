@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Zadaća_4.Models.Umjetnina>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Umjetnine.ba - Web-stranica za registrovanje umjetnina</h1>
+<img src="https://cdn.wallpapersafari.com/51/52/omKz4s.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Da bi drugi kupili vaše umjetnine, oni moraju znati da ih posjedujete! Registrujte se već danas!</h3>
+<h2 style="margin-top: 3%">Registrovane umjetnine:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KodGalerije)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumRegistracije)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cijena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naslijede)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Poklon)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KodGalerije)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumRegistracije)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cijena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naslijede)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Poklon)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novu umjetninu</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=Jn09UdSb3aA" style="margin-top: 5%">Muzika za slikanje</a>
+</div>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

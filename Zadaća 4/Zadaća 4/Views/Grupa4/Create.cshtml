@@ -1,0 +1,80 @@
+﻿@model Zadaća_4.Models.SvemirskiBrod
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function provjeriSliku(putanja) {
+        if (putanja.value.length < 1)
+            return "Niste unijeli ništa :(";
+        else if (putanja.value == "https://cdn.shopify.com/s/files/1/0832/9331/products/Screen_Shot_2016-02-02_at_6.16.55_PM_1200x1200.png")
+            return "Ovo nije vaša slika, slika je lažna!!"
+        else
+            return "Vaša profilna slika divno izgleda!"
+    }
+</script>
+<h1 style="text-align: center">Dodavanje novog svemirskog broda</h1>
+<img src="https://i.pinimg.com/originals/cd/5b/d6/cd5bd6a7284a72619ea4982470f387c4.jpg" style="width: 100%" />
+<h4 style="margin-top: 3%">Tražene informacije:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SerijskiBroj" class="control-label"></label>
+                <input asp-for="SerijskiBroj" class="form-control" />
+                <span asp-validation-for="SerijskiBroj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Naziv" class="control-label"></label>
+                <input asp-for="Naziv" class="form-control" />
+                <span asp-validation-for="Naziv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kvadrant" class="control-label"></label>
+                <input asp-for="Kvadrant" class="form-control" />
+                <span asp-validation-for="Kvadrant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Planeta" class="control-label"></label>
+                <select asp-for="Planeta" class="form-control" asp-items="Html.GetEnumSelectList<Planeta>()"></select>
+                <span asp-validation-for="Planeta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Starost" class="control-label"></label>
+                <input asp-for="Starost" class="form-control" />
+                <span asp-validation-for="Starost" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Vanzemaljci" /> @Html.DisplayNameFor(model => model.Vanzemaljci)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SvjetlosnaBrzina" /> @Html.DisplayNameFor(model => model.SvjetlosnaBrzina)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slika" class="control-label"></label>
+                <input asp-for="Slika" class="form-control" id="slika" />
+                <span asp-validation-for="Slika" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" onclick="return confirm(provjeriSliku(document.getElementById('slika')));" class="btn btn-primary">Provjeri Sliku</button>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj novi svemirski brod" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

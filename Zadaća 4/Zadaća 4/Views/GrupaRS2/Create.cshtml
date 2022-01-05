@@ -1,0 +1,87 @@
+﻿@model Zadaća_4.Models.Cvijet
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function provjeriDostavu(cvjecara) {
+        if (cvjecara.value.includes("Bosanski"))
+            return "Dostavljeno";
+        var dani = 0;
+        if (cvjecara.value.includes("Sarajevo") || cvjecara.value.includes("Mostar"))
+            dani++;
+        if (cvjecara.value.includes("Gornji") || cvjecara.value.includes("Donji"))
+            dani++;
+        if (dani == 2)
+            return "14 dana do dostave";
+        else if (dani == 1)
+            return "7 dana do dostave";
+        else
+            return "Biti će dostavljeno danas";
+    }
+</script>
+<h1 style="text-align: center">Dodavanje novog cvijeća</h1>
+<img src="https://a-static.besthdwallpaper.com/lone-tree-in-flower-field-wallpaper-3440x1440-28199_15.jpg" style="width: 100%" />
+<h4 style="margin-top: 3%">Tražene informacije:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Vrsta" class="control-label"></label>
+                <input asp-for="Vrsta" class="form-control" />
+                <span asp-validation-for="Vrsta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LatinskiNaziv" class="control-label"></label>
+                <input asp-for="LatinskiNaziv" class="form-control" />
+                <span asp-validation-for="LatinskiNaziv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZemljaPorijekla" class="control-label"></label>
+                <select asp-for="ZemljaPorijekla" class="form-control" asp-items="Html.GetEnumSelectList<Zemlja>()"></select>
+                <span asp-validation-for="ZemljaPorijekla" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumDospjeca" class="control-label"></label>
+                <input asp-for="DatumDospjeca" class="form-control" />
+                <span asp-validation-for="DatumDospjeca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kolicina" class="control-label"></label>
+                <input asp-for="Kolicina" class="form-control" />
+                <span asp-validation-for="Kolicina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cvjecara" class="control-label"></label>
+                <input asp-for="Cvjecara" class="form-control" id="cvjecara" />
+                <span asp-validation-for="Cvjecara" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" onclick="return confirm(provjeriDostavu(document.getElementById('cvjecara')));" class="btn btn-primary">Provjeri Dostavu</button>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="MozeStajati" /> @Html.DisplayNameFor(model => model.MozeStajati)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="DaniSvjezine" class="control-label"></label>
+                <input asp-for="DaniSvjezine" class="form-control" />
+                <span asp-validation-for="DaniSvjezine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj novo cvijeće" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

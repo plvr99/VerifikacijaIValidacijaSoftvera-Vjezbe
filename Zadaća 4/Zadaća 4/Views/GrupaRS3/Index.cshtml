@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Zadaća_4.Models.Nekretnina>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Agent.ba - Web-stranica za popisivanje nekretnina</h1>
+<img src="https://www.emeraldgrouppublishing.com/sites/default/files/2020-02/ejournal_subject_-_fw_-_property_management_and_built_environment.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Registrujte nekretnine prateći cijene aktuelne na tržištu! Provizija samo 75%!!</h3>
+<h2 style="margin-top: 3%">Registrovane nekretnine:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Sifra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vrsta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kvadratura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZKCist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PristupniPut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojSoba)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZaduzeniAgent)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sifra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vrsta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lokacija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kvadratura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZKCist)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PristupniPut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojSoba)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZaduzeniAgent)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novu nekretninu</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=811QZGDysx0" style="margin-top: 5%">Nostalgična muzika</a>
+</div>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

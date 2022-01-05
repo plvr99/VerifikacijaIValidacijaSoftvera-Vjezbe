@@ -1,0 +1,82 @@
+﻿@model Zadaća_4.Models.Donacija
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function odrediKategoriju(protuvrijednost) {
+        var plusevi = 0;
+        if (protuvrijednost.value % 2 == 0)
+            plusevi++;
+        if (protuvrijednost.value % 3 == 0 || protuvrijednost.value % 5 == 0)
+            plusevi++;
+        if (protuvrijednost.value % 7 == 0)
+            plusevi++;
+        return "Kategorija donacije: " + plusevi.toString();
+    }
+</script>
+<h1 style="text-align: center">Dodavanje nove donacije</h1>
+<img src="https://d18lkz4dllo6v2.cloudfront.net/cumulus_uploads/entry/2018-11-28/Holiday%20Spending_Gift%20Giving.jpg?pw=1200" style="width: 100%" />
+<h4 style="margin-top: 3%">Tražene informacije:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SerijskiBroj" class="control-label"></label>
+                <input asp-for="SerijskiBroj" class="form-control" />
+                <span asp-validation-for="SerijskiBroj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vrsta" class="control-label"></label>
+                <select asp-for="Vrsta" class="form-control" asp-items="Html.GetEnumSelectList<VrstaDonacije>()"></select>
+                <span asp-validation-for="Vrsta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OpisSadrzaja" class="control-label"></label>
+                <input asp-for="OpisSadrzaja" class="form-control" />
+                <span asp-validation-for="OpisSadrzaja" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Protuvrijednost" class="control-label"></label>
+                <input asp-for="Protuvrijednost" class="form-control" id="protuvrijednost"/>
+                <span asp-validation-for="Protuvrijednost" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" onclick="return confirm(odrediKategoriju(document.getElementById('protuvrijednost')));" class="btn btn-primary">Odredi Kategoriju</button>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PosebnaPrigoda" /> @Html.DisplayNameFor(model => model.PosebnaPrigoda)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Javna" /> @Html.DisplayNameFor(model => model.Javna)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Posiljalac" class="control-label"></label>
+                <input asp-for="Posiljalac" class="form-control" />
+                <span asp-validation-for="Posiljalac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Primalac" class="control-label"></label>
+                <input asp-for="Primalac" class="form-control" />
+                <span asp-validation-for="Primalac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj novu donaciju" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

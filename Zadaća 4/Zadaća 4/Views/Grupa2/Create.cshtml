@@ -1,0 +1,88 @@
+﻿@model Zadaća_4.Models.KućnaDostava
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function odrediCijenu(opis)
+    {
+        if (opis.value.length < 1)
+            return "Niste unijeli nijedan karakter!";
+
+        var regex = /[+-]?\d+(?:\.\d+)?/g;
+        var match;
+        var cijena = 0.0;
+        while (match = regex.exec(opis.value))
+            cijena += parseFloat(match[0]);
+
+        if (cijena < 0)
+            return "Cijena ne smije biti negativna!";
+        else if (cijena == 0)
+            return "Cijena mora biti veća od 0 KM!";
+        else
+            return "Ukupna cijena narudžbe: " + cijena.toString() + " KM!";
+    }
+</script>
+<h1 style="text-align: center">Dodavanje nove kućne dostave</h1>
+<img src="https://a-static.besthdwallpaper.com/sushi-thai-food-wallpaper-1600x600-2852_84.jpg" style="width: 100%" />
+<h4 style="margin-top: 3%">Informacije o kućnoj dostavi:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BrojKartice" class="control-label"></label>
+                <input asp-for="BrojKartice" class="form-control" />
+                <span asp-validation-for="BrojKartice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lokacija" class="control-label"></label>
+                <select asp-for="Lokacija" class="form-control" asp-items="Html.GetEnumSelectList<Lokacija>()"></select>
+                <span asp-validation-for="Lokacija" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Restoran" class="control-label"></label>
+                <select asp-for="Restoran" class="form-control" asp-items="Html.GetEnumSelectList<Restoran>()"></select>
+                <span asp-validation-for="Restoran" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cijena" class="control-label"></label>
+                <input asp-for="Cijena" class="form-control" />
+                <span asp-validation-for="Cijena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OpisNarudzbe" class="control-label"></label>
+                <input asp-for="OpisNarudzbe" class="form-control" id="opis"/>
+                <span asp-validation-for="OpisNarudzbe" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" onclick="return confirm(odrediCijenu(document.getElementById('opis')));" class="btn btn-primary">Izračunaj</button>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="VIP" /> @Html.DisplayNameFor(model => model.VIP)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Hitno" /> @Html.DisplayNameFor(model => model.Hitno)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="BrojTelefona" class="control-label"></label>
+                <input asp-for="BrojTelefona" class="form-control" />
+                <span asp-validation-for="BrojTelefona" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Naruči kućnu dostavu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

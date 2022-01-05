@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Zadaća_4.Models.Knjiga>
+
+<h1 style="text-align: center">Books.ba - Web-stranica za registraciju knjiga</h1>
+<img src="https://resi.ze-robot.com/dl/th/the-library-2560%C3%971080.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Volite knjige? Napravite vlastitu bazu podataka sa svim svojim najdražim knjigama!</h3>
+<h2 style="margin-top: 3%">Registrovane knjige:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumIzdavanja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Žanr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojStranica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Izdanje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Izdavač)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumIzdavanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Žanr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojStranica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Izdanje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Izdavač)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novu knjigu</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=BQrxsyGTztM&t" style="margin-top: 5%">Muzika za knjigoljupce</a>
+</div>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

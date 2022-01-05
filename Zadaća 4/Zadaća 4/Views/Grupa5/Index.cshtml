@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Zadaća_4.Models.Prijava>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Prijavi.ba - Aplikacija za prijavu ekoloških prekršaja</h1>
+<img src="https://i.pinimg.com/originals/c7/f9/37/c7f93785763dc47e996294deff11e073.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Neko uništava prirodu? Prijavite ga kako bi se osvijestio o globalnom zagrijavanju!</h3>
+<h2 style="margin-top: 3%">Registrovane prijave:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojProtokola)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImeIPrezime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anonimnost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VrstaPrijave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostanskiBroj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumPrekrsaja)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojProtokola)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImeIPrezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anonimnost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VrstaPrijave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lokacija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostanskiBroj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumPrekrsaja)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novu prijavu</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=cGk8WA608qM" style="margin-top: 5%">Muzika protiv globalnog zagrijavanja</a>
+</div>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

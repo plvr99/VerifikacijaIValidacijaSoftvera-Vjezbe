@@ -1,0 +1,84 @@
+﻿@model Zadaća_4.Models.Knjiga
+
+@{
+    ViewData["Title"] = "Create";
+}
+<script>
+    function odrediISBN(isbn)
+    {
+        var re = /[0-9]*[-| ][0-9]*[-| ][0-9]*[-| ][0-9]*[-| ][0-9]*/;
+        var OK = re.exec(isbn.value);
+        if (isbn.value.length < 1)
+            return "Niste unijeli nijedan karakter!";
+        else if (isbn.value.length != 17)
+            return "ISBN broj mora imati tačno 17 karaktera!";
+        else if (!OK)
+            return "ISBN nije u korektnom formatu!";
+        else
+            return "Uneseni ISBN je ispravan!";
+    }
+</script>
+<h1 style="text-align: center">Dodavanje nove knjige</h1>
+<img src="https://gray-wilx-prod.cdn.arcpublishing.com/resizer/Y7-B0DZlrefBOeURfuhUAFbhp_w=/1200x400/smart/cloudfront-us-east-1.images.arcpublishing.com/gray/WRZFS5BYMZMXDEF3OATILJXFTI.jpg" style="width: 100%" />
+<h4 style="margin-top: 3%">Informacije o knjizi:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ISBN" class="control-label"></label>
+                <input asp-for="ISBN" class="form-control" id="isbn" />
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" onclick="return confirm(odrediISBN(document.getElementById('isbn')));" class="btn btn-primary">Provjeri</button>
+            </div>
+            <div class="form-group">
+                <label asp-for="Naziv" class="control-label"></label>
+                <input asp-for="Naziv" class="form-control" />
+                <span asp-validation-for="Naziv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor" class="control-label"></label>
+                <input asp-for="Autor" class="form-control" />
+                <span asp-validation-for="Autor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumIzdavanja" class="control-label"></label>
+                <input asp-for="DatumIzdavanja" class="form-control" />
+                <span asp-validation-for="DatumIzdavanja" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Žanr" class="control-label"></label>
+                <select asp-for="Žanr" class="form-control" asp-items="Html.GetEnumSelectList<Žanr>()"></select>
+                <span asp-validation-for="Žanr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BrojStranica" class="control-label"></label>
+                <input asp-for="BrojStranica" class="form-control" />
+                <span asp-validation-for="BrojStranica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Izdanje" class="control-label"></label>
+                <input asp-for="Izdanje" class="form-control" />
+                <span asp-validation-for="Izdanje" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Izdavač" class="control-label"></label>
+                <input asp-for="Izdavač" class="form-control" />
+                <span asp-validation-for="Izdavač" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj novu knjigu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

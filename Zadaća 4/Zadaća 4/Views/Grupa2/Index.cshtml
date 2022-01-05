@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Zadaća_4.Models.KućnaDostava>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Donesi.ba - Web-stranica za naručivanje kućne dostave</h1>
+<img src="https://www.desktopbackground.org/download/3440x1440/2015/10/29/1034104_wallpapers-burgers-fast-food-hamburger-french-fries-1680x1050_5616x3744_h.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Naručite kućnu dostavu iz naših restorana - popust za studente svaki dan 150%!</h3>
+<h2 style="margin-top: 3%">Registrovane kućne dostave:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojKartice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Restoran)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cijena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpisNarudzbe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VIP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hitno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojTelefona)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojKartice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lokacija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restoran)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cijena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpisNarudzbe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VIP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hitno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojTelefona)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novu kućnu dostavu</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=Kt-tLuszKBA" style="margin-top: 5%">Slušajte muziku dok čekate</a>
+</div>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

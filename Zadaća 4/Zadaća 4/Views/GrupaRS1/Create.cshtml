@@ -1,0 +1,86 @@
+﻿@model Zadaća_4.Models.GodisnjiOdmor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function dajKomentar(napomena) {
+        var na
+        var verifikacija = napomena.value.includes("KOD 01");
+        var ime = napomena.value.includes("ŠEF DOPUŠTA");
+        var opravdano = napomena.value.includes("OPRAVDANO");
+        if (verifikacija && ime && opravdano)
+            return "GODIŠNJI ODMOR ODOBREN";
+        else if (verifikacija && ime || verifikacija && opravdano || ime && opravdano)
+            return "DIO GODIŠNJEG ODMORA ODOBREN";
+        else if (verifikacija || ime || opravdano)
+            return "ODOBRENA DVA DANA GODIŠNJEG ODMORA";
+        else
+            return "ODBIJEN ZAHTJEV";
+    }
+</script>
+<h1 style="text-align: center">Dodavanje novog godišnjeg odmora</h1>
+<img src="https://thetravelgals.com/wp-content/uploads/2018/11/family-vacation-wide.jpg" style="width: 100%" />
+<h4 style="margin-top: 3%">Tražene informacije:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BrojProtokola" class="control-label"></label>
+                <input asp-for="BrojProtokola" class="form-control" />
+                <span asp-validation-for="BrojProtokola" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Zaposlenik" class="control-label"></label>
+                <select asp-for="Zaposlenik" class="form-control" asp-items="Html.GetEnumSelectList<Zaposlenik>()"></select>
+                <span asp-validation-for="Zaposlenik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pocetak" class="control-label"></label>
+                <input asp-for="Pocetak" class="form-control" />
+                <span asp-validation-for="Pocetak" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kraj" class="control-label"></label>
+                <input asp-for="Kraj" class="form-control" />
+                <span asp-validation-for="Kraj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BrojRadnihDana" class="control-label"></label>
+                <input asp-for="BrojRadnihDana" class="form-control" />
+                <span asp-validation-for="BrojRadnihDana" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dio" class="control-label"></label>
+                <input asp-for="Dio" class="form-control" />
+                <span asp-validation-for="Dio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Odobrio" class="control-label"></label>
+                <input asp-for="Odobrio" class="form-control" />
+                <span asp-validation-for="Odobrio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Napomena" class="control-label"></label>
+                <input asp-for="Napomena" class="form-control" id="napomena" />
+                <span asp-validation-for="Napomena" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" onclick="return confirm(dajKomentar(document.getElementById('napomena')));" class="btn btn-primary">Daj Komentar</button>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj novi godišnji odmor" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

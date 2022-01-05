@@ -1,0 +1,86 @@
+﻿@model Zadaća_4.Models.Prijava
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function odrediOzbiljnost(datum) {
+        var godina = datum.valueAsDate.getFullYear();
+        var mjesec = datum.valueAsDate.getMonth() + 1;
+        var protekloDana = (Date.now() - datum.valueAsDate) / (1000 * 60 * 60 * 24);
+        var danas = new Date(Date.now());
+        if (protekloDana > 365)
+            return "Zastara zahtjeva - prošlo je više od godinu dana od prekršaja!";
+        else if (godina < danas.getFullYear())
+            return "Zahtjev ozbiljan - desio se prošle godine!";
+        else if (mjesec < danas.getMonth() + 1)
+            return "Zahtjev srednje ozbiljan - desio se prošlog mjeseca!";
+        else
+            return "Zahtjev nije ozbiljan - desio se nedavno!";
+    }
+</script>
+<h1 style="text-align: center">Dodavanje nove prijave</h1>
+<img src="https://www.trafalgarcleaningequipment.co.uk/sites/default/files/inline-images/municipal-street-sweeing-banner.png" style="width: 100%" />
+<h4 style="margin-top: 3%">Tražene informacije:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BrojProtokola" class="control-label"></label>
+                <input asp-for="BrojProtokola" class="form-control" />
+                <span asp-validation-for="BrojProtokola" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImeIPrezime" class="control-label"></label>
+                <input asp-for="ImeIPrezime" class="form-control" />
+                <span asp-validation-for="ImeIPrezime" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Anonimnost" /> @Html.DisplayNameFor(model => model.Anonimnost)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="VrstaPrijave" class="control-label"></label>
+                <select asp-for="VrstaPrijave" class="form-control" asp-items="Html.GetEnumSelectList<VrstaPrijave>()"></select>
+                <span asp-validation-for="VrstaPrijave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lokacija" class="control-label"></label>
+                <input asp-for="Lokacija" class="form-control" />
+                <span asp-validation-for="Lokacija" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostanskiBroj" class="control-label"></label>
+                <input asp-for="PostanskiBroj" class="form-control" />
+                <span asp-validation-for="PostanskiBroj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Opis" class="control-label"></label>
+                <input asp-for="Opis" class="form-control" />
+                <span asp-validation-for="Opis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumPrekrsaja" class="control-label"></label>
+                <input asp-for="DatumPrekrsaja" class="form-control" id="datum" />
+                <span asp-validation-for="DatumPrekrsaja" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 25%" onclick="return confirm(odrediOzbiljnost(document.getElementById('datum')));" class="btn btn-primary">Odredi Ozbiljnost Prekršaja</button>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj novu prijavu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

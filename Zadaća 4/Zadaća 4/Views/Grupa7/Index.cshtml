@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Zadaća_4.Models.Donacija>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Doniraj.ba - Aplikacija za donatore dobrog srca</h1>
+<img src="https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/Helping%20banner.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Pomozite ljudima kojima je to potrebno, uz mogućnost skrivanja podataka o donatoru!</h3>
+<h2 style="margin-top: 3%">Registrovane donacije:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SerijskiBroj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vrsta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpisSadrzaja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Protuvrijednost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PosebnaPrigoda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Javna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Posiljalac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Primalac)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerijskiBroj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vrsta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpisSadrzaja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Protuvrijednost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PosebnaPrigoda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Javna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Posiljalac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Primalac)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novu donaciju</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=wDk59eIT6zI" style="margin-top: 5%">Filantropska playlista</a>
+</div>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

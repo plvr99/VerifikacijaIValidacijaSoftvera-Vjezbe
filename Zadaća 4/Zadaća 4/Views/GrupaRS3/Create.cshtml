@@ -1,0 +1,83 @@
+﻿@model Zadaća_4.Models.Nekretnina
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function dajCijenuKvadrata(lokacija) {
+        var pocetna = 1000;
+        if (lokacija.value.includes("Centar"))
+            pocetna *= 2;
+        if (lokacija.value.includes("Glavni"))
+            pocetna *= 2;
+        if (lokacija.value.includes("Predgrađe"))
+            pocetna /= 2;
+
+        return "Cijena po kvadratu: " + pocetna.toString() + " KM/m2";
+    }
+</script>
+<h1 style="text-align: center">Dodavanje nove nekretnine</h1>
+<img src="https://www.irishtimes.com/polopoly_fs/1.3583010.1533230664!/image/image.jpg_gen/derivatives/box_620_330/image.jpg" style="width: 100%" />
+<h4 style="margin-top: 3%">Tražene informacije:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Sifra" class="control-label"></label>
+                <input asp-for="Sifra" class="form-control" />
+                <span asp-validation-for="Sifra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vrsta" class="control-label"></label>
+                <select asp-for="Vrsta" class="form-control" asp-items="Html.GetEnumSelectList<VrstaNekretnine>()"></select>
+                <span asp-validation-for="Vrsta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lokacija" class="control-label"></label>
+                <input asp-for="Lokacija" class="form-control" id="lokacija" />
+                <span asp-validation-for="Lokacija" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" onclick="return confirm(dajCijenuKvadrata(document.getElementById('lokacija')));" class="btn btn-primary">Daj Cijenu Kvadrata</button>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kvadratura" class="control-label"></label>
+                <input asp-for="Kvadratura" class="form-control" />
+                <span asp-validation-for="Kvadratura" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ZKCist" /> @Html.DisplayNameFor(model => model.ZKCist)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PristupniPut" /> @Html.DisplayNameFor(model => model.PristupniPut)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="BrojSoba" class="control-label"></label>
+                <input asp-for="BrojSoba" class="form-control" />
+                <span asp-validation-for="BrojSoba" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZaduzeniAgent" class="control-label"></label>
+                <input asp-for="ZaduzeniAgent" class="form-control" />
+                <span asp-validation-for="ZaduzeniAgent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj novu nekretninu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

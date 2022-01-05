@@ -1,0 +1,84 @@
+﻿@model Zadaća_4.Models.KvizOdgovor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function odrediGrupuKorisnika(godiste) {
+        if (parseInt(godiste.value) < 1900)
+            return "Najvjerovatnije niste ispravno unijeli godište - imate više od 120 godina!";
+        else if (parseInt(godiste.value) < 1945)
+            return "Imate više od 75 godina!";
+        else if (parseInt(godiste.value) < 1975)
+            return "Imate između 45 i 75 godina!";
+        else if (parseInt(godiste.value) < 1995)
+            return "Imate između 25 i 45 godina!";
+        else
+            return "Imate manje od 25 godina!";
+    }
+</script>
+<h1 style="text-align: center">Dodavanje novog odgovora</h1>
+<img src="https://www.irishtimes.com/polopoly_fs/1.4121626.1576850603!/image/image.jpg_gen/derivatives/box_620_330/image.jpg" style="width: 100%" />
+<h4 style="margin-top: 3%">Tražene informacije:</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Ime" class="control-label"></label>
+                <input asp-for="Ime" class="form-control" />
+                <span asp-validation-for="Ime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Godište" class="control-label"></label>
+                <input asp-for="Godište" class="form-control" id="godiste"/>
+                <span asp-validation-for="Godište" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" onclick="return confirm(odrediGrupuKorisnika(document.getElementById('godiste')));" class="btn btn-primary">Korisnička Grupa</button>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="DodatniOdgovor" /> @Html.DisplayNameFor(model => model.DodatniOdgovor)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Novosti" /> @Html.DisplayNameFor(model => model.Novosti)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="BrojTelefona" class="control-label"></label>
+                <input asp-for="BrojTelefona" class="form-control" />
+                <span asp-validation-for="BrojTelefona" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recenzija" class="control-label"></label>
+                <select asp-for="Recenzija" class="form-control" asp-items="Html.GetEnumSelectList<Recenzija>()"></select>
+                <span asp-validation-for="Recenzija" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Odgovor" class="control-label"></label>
+                <input asp-for="Odgovor" class="form-control" />
+                <span asp-validation-for="Odgovor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj novi odgovor" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vrati se na prethodnu stranicu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
