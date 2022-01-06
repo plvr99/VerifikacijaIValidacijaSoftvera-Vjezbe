@@ -80,6 +80,36 @@ namespace BrowserSerija
                 throw new InvalidCastException("Unijeli ste nepostojeću opciju!");
         }
 
+        public void RefactorRadSaSerijama(Serija serija, int opcija, double maxPopularnost)
+        {
+            Serija postojeća = serije.FindLast(s => s.Ime == serija.Ime && s.Opis == serija.Opis &&
+           s.PopularnostSerije == serija.PopularnostSerije && s.PopularnostSerije <= maxPopularnost);
+
+            Serija provjera = serije.Find(s => s.Ime == serija.Ime);
+            
+            if (serija == null || provjera == null)
+                throw new InvalidCastException("Nemoguće raditi sa serijom koja nije specificirana!");
+            
+            if (opcija == 1)
+            {
+                if(postojeća != null && provjera != null) throw new ArgumentException("Nemoguće dodati seriju koja već postoji!");
+                serije.Add(serija);
+            }
+            else if (opcija == 2)
+            {
+                if (postojeća == null && provjera == null) throw new ArgumentException("Nemoguće izvršiti izmjenu/brisanje serije koja ne postoji!");
+                serije.Remove(postojeća);
+                serije.Add(serija);
+            }
+            else if (opcija == 3)
+            {
+                if (postojeća == null && provjera == null) throw new ArgumentException("Nemoguće izvršiti izmjenu/brisanje serije koja ne postoji!");
+                serije.Remove(postojeća);
+            }
+            else
+                throw new InvalidCastException("Unijeli ste nepostojeću opciju!");
+        }
+
         public void DodajGlumca(Glumac glumac, string imeSerije)
         {
             Serija postojeća = serije.Find(s => s.Ime == imeSerije);
