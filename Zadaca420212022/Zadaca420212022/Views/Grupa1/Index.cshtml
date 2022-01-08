@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Zadaca420212022.Models.Strip>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Stripovi.ba - Web-stranica za registraciju stripova</h1>
+<img src="https://i.ibb.co/25cnvr7/grupa1.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Da vaši najdraži stripovi nikada ne budu zaboravljeni!</h3>
+<h2 style="margin-top: 3%">Registrovani stripovi:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EdicijaStripa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NazivStripa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumDospjeća)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpisStripa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ocjena)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EdicijaStripa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazivStripa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumDospjeća)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpisStripa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ocjena)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novi strip</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=7wMiMDBHnJ0" style="margin-top: 5%">Muzika za odmor</a>
+</div>

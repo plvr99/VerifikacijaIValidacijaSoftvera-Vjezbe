@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Zadaca420212022.Models.Izlet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Outdoor.ba - Web-stranica za unos izleta</h1>
+<img src="https://i.ibb.co/hsGVW9P/grupa2.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Nikada nemojte zaboraviti sve svoje profesionalne treninge i rekreacije uz našu stranicu!</h3>
+<h2 style="margin-top: 3%">Registrovani izleti:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aktivnost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumAktivnosti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfesionalniTrening)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trajanje)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aktivnost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lokacija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumAktivnosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfesionalniTrening)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trajanje)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novi izlet</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=LxDm-4Jrg9w" style="margin-top: 5%">Muzika za odmor</a>
+</div>

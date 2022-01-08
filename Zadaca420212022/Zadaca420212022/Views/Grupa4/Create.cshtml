@@ -1,0 +1,72 @@
+﻿@model Zadaca420212022.Models.Film
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function provjeriGlumce(naziv, glumci)
+    {
+        if (!glumci.value.includes(",") || glumci.value.length < 20)
+            return "Niste unijeli barem dva glumca - analiza ne može biti izvršena!";
+        else if (naziv.value.includes("Top Gun") && !glumci.value.includes("Tom Cruise"))
+            return "Morate unijeti glavnog glumca filma Top Gun!";
+        else if (naziv.value == "The Godfather" && (!glumci.value.includes("Marlon Brando") 
+                 || !glumci.value.includes("Al Pacino")))
+            return "Nemojte zaboraviti unijeti imena glumaca iz porodice Corleone.";
+        else
+            return "Glumci su ispravno uneseni!";
+    }
+</script>
+
+<h1>Create</h1>
+
+<h4>Film</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VrstaFilma" class="control-label"></label>
+                <select asp-for="VrstaFilma" class="form-control" asp-items="Html.GetEnumSelectList<Vrsta>()"></select>
+                <span asp-validation-for="VrstaFilma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NazivFilma" class="control-label"></label>
+                <input asp-for="NazivFilma" class="form-control" id="naziv" />
+                <span asp-validation-for="NazivFilma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumIzlaska" class="control-label"></label>
+                <input asp-for="DatumIzlaska" class="form-control" />
+                <span asp-validation-for="DatumIzlaska" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Glumci" class="control-label"></label>
+                <input asp-for="Glumci" class="form-control" id="glumci" />
+                <span asp-validation-for="Glumci" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" 
+                onclick="return confirm(provjeriGlumce(document.getElementById('naziv'), document.getElementById('glumci')));"
+                class="btn btn-primary">Provjeri</button>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="DužinaTrajanja" class="control-label"></label>
+                <input asp-for="DužinaTrajanja" class="form-control" />
+                <span asp-validation-for="DužinaTrajanja" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
