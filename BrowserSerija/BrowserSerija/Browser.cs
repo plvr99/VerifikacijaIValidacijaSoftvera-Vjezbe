@@ -80,35 +80,6 @@ namespace BrowserSerija
                 throw new InvalidCastException("Unijeli ste nepostojeću opciju!");
         }
 
-        public void RefactorRadSaSerijama(Serija serija, int opcija, double maxPopularnost)
-        {
-            Serija postojeća = serije.FindLast(s => s.Ime == serija.Ime && s.Opis == serija.Opis &&
-           s.PopularnostSerije == serija.PopularnostSerije && s.PopularnostSerije <= maxPopularnost);
-
-            Serija provjera = serije.Find(s => s.Ime == serija.Ime);
-            
-            if (serija == null || provjera == null)
-                throw new InvalidCastException("Nemoguće raditi sa serijom koja nije specificirana!");
-            
-            if (opcija == 1)
-            {
-                if(postojeća != null && provjera != null) throw new ArgumentException("Nemoguće dodati seriju koja već postoji!");
-                serije.Add(serija);
-            }
-            else if (opcija == 2)
-            {
-                if (postojeća == null && provjera == null) throw new ArgumentException("Nemoguće izvršiti izmjenu/brisanje serije koja ne postoji!");
-                serije.Remove(postojeća);
-                serije.Add(serija);
-            }
-            else if (opcija == 3)
-            {
-                if (postojeća == null && provjera == null) throw new ArgumentException("Nemoguće izvršiti izmjenu/brisanje serije koja ne postoji!");
-                serije.Remove(postojeća);
-            }
-            else
-                throw new InvalidCastException("Unijeli ste nepostojeću opciju!");
-        }
 
         public void DodajGlumca(Glumac glumac, string imeSerije)
         {
@@ -171,6 +142,25 @@ namespace BrowserSerija
             }
 
             rasporedi.Add(ovosedmičniRaspored);
+        }
+        public void NapraviRasporedRefactor(Raspored ovosedmičniRaspored)
+        {
+            if (rasporedi.Find(r => r.Pocetak == ovosedmičniRaspored.Pocetak || r.Kraj == ovosedmičniRaspored.Kraj) != null)
+                throw new ArgumentException("Raspored za datu sedmicu je već definisan!");
+            else if (Math.Abs((ovosedmičniRaspored.Kraj - ovosedmičniRaspored.Pocetak).TotalDays - 7) > 0.25)
+                throw new ArgumentException("Raspored treba trajati 7 dana!");
+            ProvjeraRasporedaRefactor(ovosedmičniRaspored);
+            
+        }
+
+        private void ProvjeraRasporedaRefactor(Raspored ovosedmičniRaspored)
+        {
+            // pomocna metoda za NapraviRasporedRefactor
+            for (int i = 0; i < ovosedmičniRaspored.Serije.Count; i++)
+            {
+                if (!serije.Contains(ovosedmičniRaspored.Serije[i]))
+                    throw new ArgumentException("Unijeli ste seriju koja nije registrovana!");
+            }
         }
 
         #endregion
