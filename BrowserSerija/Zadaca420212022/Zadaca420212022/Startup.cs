@@ -15,6 +15,7 @@ namespace Zadaca420212022
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
