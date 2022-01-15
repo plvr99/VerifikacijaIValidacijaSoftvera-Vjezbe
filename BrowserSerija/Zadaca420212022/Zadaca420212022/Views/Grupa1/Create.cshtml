@@ -1,0 +1,70 @@
+﻿@model Zadaca420212022.Models.Strip
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function provjeriOpis(edicija, opis)
+    {
+        if (opis.value.length < 1)
+            return "Niste unijeli opis - analiza ne može biti izvršena!";
+        else if (edicija.value == "0" && !opis.value.includes("Peter Parker"))
+            return "Opis mora sadržavati pravo ime Spider-mana!";
+        else if (edicija.value == "1" && !opis.value.includes("Xavier"))
+            return "Zašto Professor X nije spomenut?";
+        else
+            return "Uneseni opis zadovoljava standarde!";
+    }
+</script>
+
+<h1>Create</h1>
+
+<h4>Strip</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EdicijaStripa" class="control-label"></label>
+                <select asp-for="EdicijaStripa" class="form-control" asp-items="Html.GetEnumSelectList<Edicija>()" id="edicija"></select>
+                <span asp-validation-for="EdicijaStripa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NazivStripa" class="control-label"></label>
+                <input asp-for="NazivStripa" class="form-control" />
+                <span asp-validation-for="NazivStripa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumDospjeća" class="control-label"></label>
+                <input asp-for="DatumDospjeća" class="form-control" />
+                <span asp-validation-for="DatumDospjeća" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OpisStripa" class="control-label"></label>
+                <input asp-for="OpisStripa" class="form-control" id="opis" />
+                <span asp-validation-for="OpisStripa" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" 
+                onclick="return confirm(provjeriOpis(document.getElementById('edicija'), document.getElementById('opis')));"
+                class="btn btn-primary">Provjeri</button>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ocjena" class="control-label"></label>
+                <input asp-for="Ocjena" class="form-control" />
+                <span asp-validation-for="Ocjena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Zadaca420212022.Models.Film>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Moviehub.ba - Web-stranica za registraciju filmova</h1>
+<img src="https://i.ibb.co/8BmzNS9/grupa4.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Budite u toku kao da ste filmski kritičar i unesite sve svoje najdraže filmove u našu stranicu!</h3>
+<h2 style="margin-top: 3%">Registrovani filmovi:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VrstaFilma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NazivFilma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumIzlaska)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Glumci)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DužinaTrajanja)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VrstaFilma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazivFilma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumIzlaska)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Glumci)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DužinaTrajanja)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novi film</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=qPlySAazBY4" style="margin-top: 5%">Muzika za odmor</a>
+</div>

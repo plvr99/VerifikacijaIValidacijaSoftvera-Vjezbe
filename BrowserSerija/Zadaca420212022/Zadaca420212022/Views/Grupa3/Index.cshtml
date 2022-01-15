@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Zadaca420212022.Models.Pjesma>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Pjesmarica.ba - Web-stranica za registraciju najdražih pjesama</h1>
+<img src="https://i.ibb.co/7bMdVdT/grupa3.jpg" style="width: 100%" />
+<h3 style="margin-top: 3%">Za sve ljubitelje muzike, ova web-stranica pruža pomoć za registraciju svih najljepših pjesama!</h3>
+<h2 style="margin-top: 3%">Registrovane pjesme:</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Žanr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NazivPjesme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Izvođač)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumObjavljivanja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Žanr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazivPjesme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Izvođač)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumObjavljivanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 5%">Dodaj novu pjesmu</a>
+    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=dzS52hLVUCU" style="margin-top: 5%">Muzika za odmor</a>
+</div>

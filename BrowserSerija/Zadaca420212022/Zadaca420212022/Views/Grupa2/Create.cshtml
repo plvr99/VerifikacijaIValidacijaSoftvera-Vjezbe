@@ -1,0 +1,71 @@
+﻿@model Zadaca420212022.Models.Izlet
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function provjeriLokaciju(trajanje, lokacija)
+    {
+        if (!['Trebević', 'Igman', 'Bjelašnica', 'Treskavica', 'Jahorina'].includes(lokacija.value))
+            return "Podržane su samo lokacije izleta na okolnim sarajevskim planinama!";
+        else if (trajanje.value == "")
+            return "Za provjeru lokacije morate unijeti vrijeme trajanja...";
+        else if (lokacija.value == "Igman" && trajanje.value < 0.2)
+            return "Na Igmanu se mora provesti više od dvije minute!";
+
+        else
+            return "Lokacija odgovara vremenu trajanja!";
+    }
+</script>
+
+<h1>Create</h1>
+
+<h4>Izlet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Aktivnost" class="control-label"></label>
+                <select asp-for="Aktivnost" class="form-control" asp-items="Html.GetEnumSelectList<Aktivnost>()" ></select>
+                <span asp-validation-for="Aktivnost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lokacija" class="control-label"></label>
+                <input asp-for="Lokacija" class="form-control" id="lokacija" />
+                <span asp-validation-for="Lokacija" class="text-danger"></span>
+                <button style="margin-top: 5%; margin-left: 35%" 
+                onclick="return confirm(provjeriLokaciju(document.getElementById('trajanje'), document.getElementById('lokacija')));"
+                class="btn btn-primary">Provjeri</button>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumAktivnosti" class="control-label"></label>
+                <input asp-for="DatumAktivnosti" class="form-control" />
+                <span asp-validation-for="DatumAktivnosti" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ProfesionalniTrening" /> @Html.DisplayNameFor(model => model.ProfesionalniTrening)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trajanje" class="control-label"></label>
+                <input asp-for="Trajanje" class="form-control" id="trajanje" />
+                <span asp-validation-for="Trajanje" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
